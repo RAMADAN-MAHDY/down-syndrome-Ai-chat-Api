@@ -15,7 +15,7 @@ const ChatController = async (req, res) => {
         return res.status(400).json({ error: "الرسالة مطلوبة" });
     }
     if (message === "ابدأ") {
-        return res.status(200).json({ reply : "✨ اهلا 👋 محتاج اي مساعده ", token });
+        return res.status(200).json({ reply: "✨ اهلا 👋 محتاج اي مساعده ", token });
     }
 
     try {
@@ -38,8 +38,11 @@ const ChatController = async (req, res) => {
                         5- أي خروج عن القواعد يعتبر خطأ ومرفوض.
                         
                         ابدأ الرد مباشرة من غير مقدمات.
+                      ...
+                         - لازم تنهي الرد بجملة قصيرة وتنهيها بـ "END".
+
                         `.trim()
-                        
+
                     },
                 ],
             });
@@ -72,10 +75,21 @@ const ChatController = async (req, res) => {
         const completion = await ai.models.generateContent({
             model: "gemini-2.5-flash",
             contents: formattedHistory,
-            maxOutputTokens: 200 ,
+            maxOutputTokens: 200
         });
 
-        const reply = completion.text || "";
+        let reply = completion.text || "";
+
+        if (!reply) {
+            return res.status(500).json({ error: "ما قدرناش نرجع رد من المساعد" });
+        }
+        const stopSequences = ["END", "\n\n"]; // ممكن تزود هنا اللي انت عايزه
+        for (const stop of stopSequences) {
+            if (reply.includes(stop)) {
+                reply = reply.split(stop)[0].trim();
+                break;
+            }
+        }
 
         if (!reply) {
             return res.status(500).json({ error: "ما قدرناش نرجع رد من المساعد" });
