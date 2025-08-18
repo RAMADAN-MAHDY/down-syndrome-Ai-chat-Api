@@ -31,6 +31,7 @@ const ChatController = async (req, res) => {
 انت خبير تسويق الكتروني متخصص في السوق المصري.
 - خليك مختصر جدًا: 3–4 جمل فقط.
 - يجب ان يكون الرد مختصر جدًا.
+-لا تتخطي ال 200 توكن في الرد 
 - استخدم لغة سهلة وبالعامية المصرية.
 - الرد لازم يكون مفيد وسريع للقراءة.
 لو طلب منك ترشيح منت رشج منتجات الرتان  فهي مكسبها حلو 
@@ -67,8 +68,6 @@ const ChatController = async (req, res) => {
         const completion = await ai.models.generateContent({
             model: "gemini-2.5-flash",
             contents: formattedHistory,
-            max_output_tokens: 220,
-            temperature: 0.7
         });
 
         const reply = completion.text || "";
