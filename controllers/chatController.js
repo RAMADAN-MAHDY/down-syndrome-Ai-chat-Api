@@ -94,7 +94,7 @@ const ChatController = async (req, res) => {
         if (!reply) {
             return res.status(500).json({ error: "ما قدرناش نرجع رد من المساعد" });
         }
-        const stopSequences = ["END", "\n\n"]; // ممكن تزود هنا اللي انت عايزه
+        const stopSequences = ["END"]; // ممكن تزود هنا اللي انت عايزه
         for (const stop of stopSequences) {
             if (reply.includes(stop)) {
                 reply = reply.split(stop)[0].trim();
