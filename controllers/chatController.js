@@ -86,7 +86,9 @@ const ChatController = async (req, res) => {
         const completion = await ai.models.generateContent({
             model: "gemini-2.5-flash",
             contents: formattedHistory,
-            maxOutputTokens: 200
+            generationConfig: {
+                maxOutputTokens: 200
+            }
         });
 
         let reply = completion.text || "";
