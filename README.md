@@ -90,15 +90,36 @@
 
 ---
 
+# API الدردشة  
+## نقطة النهاية (Endpoint)
+POST https://down-syndrome-ai-chat-api.vercel.app/chat
+الوصف (Description)
+يقوم نقطة النهاية بتنفيذ محادثة مع الذكاء الاصطناعي باستخدام API Gemini.
+
+## الطلبات المسموح بها (Allowed Methods)
+
+* POST
+
+## الرؤوس المطلوبة (Required Headers)
+
+* `Content-Type`: application/json
+* `Authorization`: Bearer <JWT_TOKEN>
+
+جسم الطلب (Request Body)
+```json
+{
+  "message": "مرحبا  "
+}
+```
+
 ## مثال لرد API
 
 ```json
 {
-  "reply": "هلا فيك! 😊 وش نوع الخدمة اللي تبغاها؟",
-  "token": "eyJhbGciOiJIUzI1..."
+  "reply": "الرد من الشات بوت",
+  "token": "توكن الجلسة الجديد أو الحالي"
 }
 ```
-
 ---
 
 ## هيكل المشروع (Architecture)
