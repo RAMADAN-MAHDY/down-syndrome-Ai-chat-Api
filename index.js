@@ -18,7 +18,7 @@ const port = 5000;
 
 // إعداد CORS
 const options = {
-    origin: ["https://elmahdy.vercel.app" , "http://localhost:3000"], // ✅ السماح بالوصول من هذا النطاق
+    origin: ["https://elmahdy.vercel.app" , "http://localhost:5173"], // ✅ السماح بالوصول من هذا النطاق
     credentials: true, // ✅ السماح بالكوكيز
 };
 app.use(cors(options));
