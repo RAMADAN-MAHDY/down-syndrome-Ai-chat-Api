@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import chatRoutes from "./routes/chat.js";
 import connectDB from "./db.js";
-import analyzeRoutes from "./routes/analyze.js";
+// import analyzeRoutes from "./routes/analyze.js";
 import getusers from "./routes/GET/getusers.js";
 import deleteUser from "./routes/DELETE/deleteUser.js";
 import clickController from './routes/post/clickRoutes.js'
@@ -31,7 +31,7 @@ securityMiddleware(app) ; // ✅ استخدام محركات الحماية
 
 // ✅ استخدام الراوتر
 app.use("/chat", chatRoutes); // ✅ استخدام راوتر الدردشة
-app.use("/analyze", analyzeRoutes); // ✅ استخدام راوتر التحليل
+// app.use("/analyze", analyzeRoutes); // ✅ استخدام راوتر التحليل
 app.use("/users", getusers); // ✅ استخدام راوتر جلب المستخدمين
 app.use("/DELETusers", deleteUser); // ✅ استخدام راوتر حذف المستخدمين
 app.use("/api" , clickController) 
